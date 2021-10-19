@@ -1,0 +1,5 @@
+>git checkout -- README.md
+Find the old version and replace the new version with it.
+>REM Checkout the version prior to the last commit
+>git checkout HEAD~1
+Chack old version of commit.
