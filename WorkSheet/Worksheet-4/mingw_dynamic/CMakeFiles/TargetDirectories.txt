@@ -1,0 +1,4 @@
+A:/EEEE2046/calc_cmake/mingw_dynamic/CMakeFiles/maths.dir
+A:/EEEE2046/calc_cmake/mingw_dynamic/CMakeFiles/calc.dir
+A:/EEEE2046/calc_cmake/mingw_dynamic/CMakeFiles/edit_cache.dir
+A:/EEEE2046/calc_cmake/mingw_dynamic/CMakeFiles/rebuild_cache.dir

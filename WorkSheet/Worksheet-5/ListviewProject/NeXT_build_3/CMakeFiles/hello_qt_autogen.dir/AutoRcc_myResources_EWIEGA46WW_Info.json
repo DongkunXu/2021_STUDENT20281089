@@ -1,0 +1,19 @@
+{
+	"BUILD_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/hello_qt_autogen",
+	"CMAKE_BINARY_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3",
+	"CMAKE_CURRENT_BINARY_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3",
+	"CMAKE_CURRENT_SOURCE_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2",
+	"CMAKE_SOURCE_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2",
+	"INCLUDE_DIR" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/hello_qt_autogen/include",
+	"INPUTS" : [ "A:/A_EEEE2046/Worksheet5/exercise 2/Save File.ico" ],
+	"LOCK_FILE" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/hello_qt_autogen.dir/AutoRcc_myResources_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "myResources" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_myResources.cpp",
+	"RCC_EXECUTABLE" : "C:/Qt/6.2.0/mingw81_64/./bin/rcc.exe",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/hello_qt_autogen.dir/AutoRcc_myResources_EWIEGA46WW_Used.txt",
+	"SOURCE" : "A:/A_EEEE2046/Worksheet5/exercise 2/myResources.qrc",
+	"VERBOSITY" : 0
+}
