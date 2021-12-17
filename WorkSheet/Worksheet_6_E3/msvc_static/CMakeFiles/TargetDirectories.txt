@@ -1,0 +1,4 @@
+A:/EEEE2046/calc_cmake/msvc_static/CMakeFiles/maths.dir
+A:/EEEE2046/calc_cmake/msvc_static/CMakeFiles/calc.dir
+A:/EEEE2046/calc_cmake/msvc_static/CMakeFiles/ALL_BUILD.dir
+A:/EEEE2046/calc_cmake/msvc_static/CMakeFiles/ZERO_CHECK.dir

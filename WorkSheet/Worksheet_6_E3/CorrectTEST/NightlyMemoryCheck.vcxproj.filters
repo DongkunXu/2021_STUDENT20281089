@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="A:\A_EEEE2046\myGithub\2021_STUDENT20281089\WorkSheet\Worksheet_6_E3\CorrectTEST\CMakeFiles\e8fd8b8ef2d3425dcd764c701460af74\NightlyMemoryCheck.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="A:\A_EEEE2046\myGithub\2021_STUDENT20281089\WorkSheet\Worksheet_6_E3\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="A:\A_EEEE2046\myGithub\2021_STUDENT20281089\WorkSheet\Worksheet_6_E3\CorrectTEST\CMakeFiles\NightlyMemoryCheck" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{901655AC-EDE3-37F5-8DF3-B3E7F40AFA5F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

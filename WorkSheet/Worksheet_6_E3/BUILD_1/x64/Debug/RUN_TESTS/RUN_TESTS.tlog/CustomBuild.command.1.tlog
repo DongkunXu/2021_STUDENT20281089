@@ -1,0 +1,10 @@
+^A:\A_EEEE2046\MYGITHUB\2021_STUDENT20281089\WORKSHEET\WORKSHEET_6_E3\BUILD_1\CMAKEFILES\11E7A6F936CCE9C208D75FBFF0E58495\RUN_TESTS_FORCE.RULE
+setlocal
+cd .
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

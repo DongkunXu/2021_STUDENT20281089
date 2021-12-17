@@ -1,0 +1,10 @@
+^A:\A_EEEE2046\MYGITHUB\2021_STUDENT20281089\WORKSHEET\WORKSHEET_6_E3\CORRECTTEST\CMAKEFILES\E8FD8B8EF2D3425DCD764C701460AF74\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/A_EEEE2046/myGithub/2021_STUDENT20281089/WorkSheet/Worksheet_6_E3 -BA:/A_EEEE2046/myGithub/2021_STUDENT20281089/WorkSheet/Worksheet_6_E3/CorrectTEST --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file A:/A_EEEE2046/myGithub/2021_STUDENT20281089/WorkSheet/Worksheet_6_E3/CorrectTEST/calc.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
