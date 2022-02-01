@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\QtVTKExample_autogen\mocs_compilation_Debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\mainwindow.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\qrc_icons.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\QtVTKExample_autogen\mocs_compilation_Release.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\QtVTKExample_autogen\mocs_compilation_MinSizeRel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\QtVTKExample_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\BUILD\ui_mainwindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\mainwindow.ui" />
+    <CustomBuild Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\Icons\icons.qrc" />
+    <CustomBuild Include="A:\A_EEEE2046\WorkSheet-6\Exercise_3\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{D70E9EC7-F1D1-3B1E-8B20-4D1201EEFAA1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4C45DE32-6EC2-347F-98A1-4AB56CE0E1B8}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

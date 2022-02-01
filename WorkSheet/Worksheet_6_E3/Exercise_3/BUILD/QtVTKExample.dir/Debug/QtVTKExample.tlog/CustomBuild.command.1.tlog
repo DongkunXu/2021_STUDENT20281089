@@ -1,0 +1,30 @@
+^A:\A_EEEE2046\WORKSHEET-6\EXERCISE_3\MAINWINDOW.UI
+setlocal
+C:\Qt\6.2.0\msvc2019_64\.\bin\uic.exe -o A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/ui_mainwindow.h A:/A_EEEE2046/WorkSheet-6/Exercise_3/mainwindow.ui
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^A:\A_EEEE2046\WORKSHEET-6\EXERCISE_3\ICONS\ICONS.QRC
+setlocal
+C:\Qt\6.2.0\msvc2019_64\.\bin\rcc.exe --name icons --output A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/qrc_icons.cpp A:/A_EEEE2046/WorkSheet-6/Exercise_3/Icons/icons.qrc
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^A:\A_EEEE2046\WORKSHEET-6\EXERCISE_3\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/A_EEEE2046/WorkSheet-6/Exercise_3 -BA:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD --check-stamp-file A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

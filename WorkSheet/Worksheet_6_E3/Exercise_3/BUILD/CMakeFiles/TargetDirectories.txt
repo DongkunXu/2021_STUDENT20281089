@@ -1,0 +1,3 @@
+A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/CMakeFiles/QtVTKExample.dir
+A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/CMakeFiles/ALL_BUILD.dir
+A:/A_EEEE2046/WorkSheet-6/Exercise_3/BUILD/CMakeFiles/ZERO_CHECK.dir
