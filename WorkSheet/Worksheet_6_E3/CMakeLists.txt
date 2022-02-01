@@ -1,38 +1,52 @@
-# calc_cmake/CMakeLists.txt
-cmake_minimum_required( VERSION 2.8 )
-project(MathsLib)
-project( calc )
-include(CTest)
+cmake_minimum_required(VERSION 3.3 FATAL_ERROR)
 
-add_executable(test1 test1.cpp)
-target_link_libraries(test1 maths)
-add_test(test1 test1)
+foreach(p
+    CMP0071 # 3.10: Let AUTOMOC and AUTOUIC process GENERATED files
+    )
+  if(POLICY ${p})
+    cmake_policy(SET ${p} NEW)
+  endif()
+endforeach()
 
-# This project contains a library
+PROJECT( QtVTKExample )
 
-add_library( maths adder.cpp )
+# The CMake build process might generate some new files in the current
+# directory. This makes sure they can be found.
+set( CMAKE_INCLUDE_CURRENT_DIR ON )
 
-# Note: you could force CMake to always build a static/shared library:
-#add_library( maths STATIC adder.cpp )
-#add_library( maths SHARED adder.cpp )
 
-if( NOT BUILD_SHARED_LIBS )
+# This allows CMake to run one of Qt's build tools called moc
+# if it is needed. moc.exe can be found in Qt's bin directory.
+# We'll look at what moc does later.
+set( CMAKE_AUTOMOC ON )
+set( CMAKE_AUTOUIC ON )
 
-# if static libs are compiled we need
-# to somehow communicate that to the
-# source code. The definition will be
-# used to determine how MATHSLIB_API
-# is defined in adder.h
+# Find the Qt widgets package. This locates the relevant include and
+# lib directories, and the necessary static libraries for linking.
+find_package( Qt6Widgets )
 
-add_definitions( -Dmaths_STATIC )
-endif()
+set( UIS mainwindow.ui )
+qt6_wrap_ui( UI_Srcs ${UIS} )
 
-# It also contains an executable
+set( ICONS Icons/icons.qrc )
+qt6_add_resources( QRC_Srcs ${ICONS} )
 
-add_executable( calc calc.cpp )
 
-# The executable uses the library
+# Also link to VTK
+find_package( VTK REQUIRED )
+include( ${VTK_USE_FILE} )
 
-target_link_libraries( calc maths )
+# Define the executable output and its sources
+add_executable( QtVTKExample MACOSX_BUNDLE
+				main.cpp mainwindow.cpp 
+				mainwindow.h 
+				mainwindow.ui
+				${UI_Srcs}
+				${QRC_Srcs}
+				)
 
-# /calc_cmake/CMakeLists.txt
+# Tell CMake that the executable depends on the Qt::Widget libraries.
+target_link_libraries( QtVTKExample Qt6::Widgets )
+
+# Tell CMake that the executable depends on the VTK libraries
+target_link_libraries( QtVTKExample ${VTK_LIBRARIES} )
