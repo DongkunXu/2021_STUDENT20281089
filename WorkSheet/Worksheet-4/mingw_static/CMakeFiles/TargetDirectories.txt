@@ -1,4 +1,0 @@
-A:/EEEE2046/calc_cmake/mingw_static/CMakeFiles/maths.dir
-A:/EEEE2046/calc_cmake/mingw_static/CMakeFiles/calc.dir
-A:/EEEE2046/calc_cmake/mingw_static/CMakeFiles/edit_cache.dir
-A:/EEEE2046/calc_cmake/mingw_static/CMakeFiles/rebuild_cache.dir

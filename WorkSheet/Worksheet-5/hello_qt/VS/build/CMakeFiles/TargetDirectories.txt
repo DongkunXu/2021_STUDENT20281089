@@ -1,3 +1,0 @@
-A:/EEEE2046/Worksheet5/hello_qt/VS/build/CMakeFiles/hello_qt.dir
-A:/EEEE2046/Worksheet5/hello_qt/VS/build/CMakeFiles/ALL_BUILD.dir
-A:/EEEE2046/Worksheet5/hello_qt/VS/build/CMakeFiles/ZERO_CHECK.dir
