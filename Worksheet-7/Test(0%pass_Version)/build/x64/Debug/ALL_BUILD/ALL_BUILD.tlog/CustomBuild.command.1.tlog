@@ -1,0 +1,10 @@
+^D:\GITHUB\2021_STUDENT20281089\WORKSHEET\WORKSHEET-7\TEST(0%PASS_VERSION)\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/GitHub/2021_STUDENT20281089/WorkSheet/Worksheet-7/Test(0%%pass_Version) -BD:/GitHub/2021_STUDENT20281089/WorkSheet/Worksheet-7/Test(0%%pass_Version)/build --check-stamp-file D:/GitHub/2021_STUDENT20281089/WorkSheet/Worksheet-7/Test(0%%pass_Version)/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,8 @@
+ -> Name: Item_Name -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: Item_Name -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: Item_Name -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: yssb -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: Ite -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: Item_Name -> Stock: 0 -> Cost: 0 -> Reorder?: 0
+ -> Name: Name -> Stock: 5 -> Cost: 2 -> Reorder?: 0
+ -> Name: Item_Name -> Stock: 0 -> Cost: 0 -> Reorder?: 0

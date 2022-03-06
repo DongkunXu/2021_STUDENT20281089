@@ -1,0 +1,10 @@
+^A:\EEEE2046\WORKSHEET5\HELLO_QT\VS\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/EEEE2046/Worksheet5/hello_qt/VS -BA:/EEEE2046/Worksheet5/hello_qt/VS/build --check-stamp-file A:/EEEE2046/Worksheet5/hello_qt/VS/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
