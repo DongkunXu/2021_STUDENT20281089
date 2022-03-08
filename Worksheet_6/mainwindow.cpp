@@ -3,6 +3,7 @@
 #include <vtkDiskSource.h>
 #include <vtkArrowSource.h>
 #include <vtkConeSource.h>
+#include <vtkSphereSource.h>
 #include <vtkActor.h>
 #include <vtkProperty.h>
 #include <vtkCamera.h>
@@ -26,79 +27,418 @@
 #include <iostream>
 #include <QFile>
 #include <vtkRenderWindow.h>
+#include <vtkStdString.h>
 #include <vtkRenderWindowInteractor.h>
 #include <vtkSTLReader.h>
+#include <QColorDialog>
+#include <vtkGeometryFilter.h>
+#include <vtkShrinkFilter.h>
+#include <vtkPlane.h>
+#include <vtkClipDataSet.h>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+vtkNew<vtkActor> actor;
+vtkNew<vtkSTLReader> reader;
+vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+vtkSmartPointer<vtkPlane> planeLeft = vtkSmartPointer<vtkPlane>::New();
+float Red_B=0,Green_B=0,Blue_B=0;
+float Red=1,Green=1,Blue=1;
+double S=1;
+int shape=0;
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    // standard call to setup Qt UI (same as previously)
     ui->setupUi( this );
-	
-	// Now need to create a VTK render window and link it to the QtVTK widget
-	vtkNew<vtkGenericOpenGLRenderWindow> renderWindow;
+
     ui->qvtkWidget->SetRenderWindow( renderWindow );			// note that vtkWidget is the name I gave to my QtVTKOpenGLWidget in Qt creator
-	
-    //connect( this, &MainWindow::statusUpdateMessage, ui->statusBar, &QStatusBar::showMessage );
-    ui->saveButton->setIcon(QIcon(":/save.png"));
-    ui->openButton->setIcon(QIcon(":/file.png"));
 
-    ui->arrow->setIcon(QIcon(":/arrow.dng"));
-    ui->cone->setIcon(QIcon(":/slz.dng"));
-    ui->disk->setIcon(QIcon(":/disk.dng"));
+    ui->saveButton->setIcon(QIcon(":/Icons/save.png"));
+    ui->openButton->setIcon(QIcon(":/Icons/file.png"));
 
-    connect( ui->Camera, &QPushButton::released, this, &::MainWindow::handlCamera );
+    ui->arrow->setIcon(QIcon(":/Icons/arrow.png"));
+    ui->cone->setIcon(QIcon(":/Icons/slz.png"));
+    ui->disk->setIcon(QIcon(":/Icons/disk.png"));
+    ui->ColorChoose->setIcon(QIcon(":/Icons/dark.png"));
+    ui->Color->setIcon(QIcon());
+
+    connect( ui->BoxShrink, &QCheckBox::stateChanged, this, &::MainWindow::on_checkBox_stateChanged);
+    connect( ui->BoxClip, &QCheckBox::stateChanged, this, &::MainWindow::on_checkBoxclip_stateChanged);
+
+    connect( ui->Filter, &QPushButton::released, this, &::MainWindow::handlFilter );
+}
+
+void MainWindow::on_checkBox_stateChanged()
+{
+
+   if( ui->BoxShrink->isChecked() )
+     {
+       S=0.7;
+
+       if (shape == 1){
+           vtkNew<vtkSphereSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 2){
+           vtkNew<vtkArrowSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 3){
+           vtkNew<vtkConeSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+
+       if (shape == 0){
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(reader->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+       }
+
+
+       renderer->SetBackground( Red_B,Green_B,Blue_B );
+
+       renderWindow->Render();
+     }
+   else if(ui->BoxShrink->isChecked() == false)
+    {
+       S=1;
+
+       if (shape == 1){
+           vtkNew<vtkSphereSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+       }
+       if (shape == 2){
+           vtkNew<vtkArrowSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+       }
+       if (shape == 3){
+           vtkNew<vtkConeSource> cubeSource;
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(cubeSource->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+       }
+
+       if (shape == 0){
+           vtkNew<vtkShrinkFilter> shrink;
+           shrink->SetInputConnection(reader->GetOutputPort());
+           shrink->SetShrinkFactor(S);
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection(shrink->GetOutputPort());
+           actor->SetMapper(mapper);
+       }
+
+
+       actor->GetProperty()->SetColor( Red,Green,Blue );
+
+       renderer->AddActor(actor);
+       renderer->SetBackground( Red_B,Green_B,Blue_B );
+
+       renderWindow->Render();
+     }
+}
+
+
+void MainWindow::on_checkBoxclip_stateChanged()
+{
+
+   if( ui->BoxClip->isChecked() )
+     {
+       if (shape == 1){
+           vtkNew<vtkSphereSource> source;
+           planeLeft->SetOrigin(0.0, 0.0, 0.0);
+           planeLeft->SetNormal(-0.5, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 2){
+           vtkNew<vtkArrowSource> source;
+           planeLeft->SetOrigin(0.0, 0.0, 0.0);
+           planeLeft->SetNormal(0.0, -1.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 3){
+           vtkNew<vtkConeSource> source;
+           planeLeft->SetOrigin(0.0, 0.0, 0.0);
+           planeLeft->SetNormal(-1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+
+       if (shape == 0){
+
+           planeLeft->SetOrigin(0.0, 0.0, 0.0);
+           planeLeft->SetNormal(-1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( reader->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+
+       }
+
+       renderer->SetBackground( Red_B,Green_B,Blue_B );
+
+       renderWindow->Render();
+     }
+   else if(ui->BoxClip->isChecked() == false)
+    {
+       if (shape == 1){
+           vtkNew<vtkSphereSource> source;
+           planeLeft->SetOrigin(-9990.0, 0.0, 0.0);
+           planeLeft->SetNormal(1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 2){
+           vtkNew<vtkArrowSource> source;
+           planeLeft->SetOrigin(-9990.0, 0.0, 0.0);
+           planeLeft->SetNormal(1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+       if (shape == 3){
+           vtkNew<vtkConeSource> source;
+           planeLeft->SetOrigin(-9999.0, 0.0, 0.0);
+           planeLeft->SetNormal(1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( source->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+       }
+
+       if (shape == 0){
+
+           planeLeft->SetOrigin(-99990.0, 0.0, 0.0);
+           planeLeft->SetNormal(1.0, 0.0, 0.0);
+           vtkSmartPointer<vtkClipDataSet> clipFilter = vtkSmartPointer<vtkClipDataSet>::New();
+           clipFilter->SetInputConnection( reader->GetOutputPort() ) ;
+           clipFilter->SetClipFunction( planeLeft.Get() );
+           vtkNew<vtkDataSetMapper> mapper;
+           mapper->SetInputConnection( clipFilter->GetOutputPort() );
+
+           actor->SetMapper(mapper);
+           actor->GetProperty()->SetColor( Red,Green,Blue );
+
+           renderer->AddActor(actor);
+
+       }
+
+       actor->GetProperty()->SetColor( Red,Green,Blue );
+
+       renderer->AddActor(actor);
+       renderer->SetBackground( Red_B,Green_B,Blue_B );
+
+       renderWindow->Render();
+     }
+}
+
+
+void MainWindow::on_disk_triggered() {
+
+    shape = 1;
+
+    vtkSmartPointer<vtkSphereSource> cubeSource = vtkSmartPointer<vtkSphereSource>::New();
+
+    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    mapper->SetInputConnection( cubeSource->GetOutputPort() );
+
+    actor->SetMapper(mapper);
+    actor->GetProperty()->EdgeVisibilityOn();
+
+    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
+    actor->GetProperty()->SetColor( Red,Green,Blue );
+
+    randerbegan(actor);
 
 }
 
-void MainWindow::handlCamera() {}
+void MainWindow::on_arrow_triggered() {
 
-void MainWindow::randerbegan(vtkSmartPointer<vtkActor> actor,vtkSmartPointer<vtkNamedColors> colors){
-    // Create a renderer, and render window
-    vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+    shape = 2;
 
-    actor->GetProperty()->SetDiffuseColor(
-          colors->GetColor3d("White").GetData());
-    //vtkSmartPointer<vtkRenderWindow> renderWindow = vtkSmartPointer<vtkRenderWindow>::New();		// ###### We've already created the renderWindow this time ######
-    ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );									// ###### ask the QtVTKOpenGLWidget for its renderWindow ######
+    vtkSmartPointer<vtkArrowSource> cubeSource = vtkSmartPointer<vtkArrowSource>::New();
+
+    // Create a mapper that will hold the cube's geometry in a format suitable for rendering
+    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    mapper->SetInputConnection( cubeSource->GetOutputPort() );
+
+    actor->SetMapper(mapper);
+    actor->GetProperty()->EdgeVisibilityOn();
+
+    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
+    actor->GetProperty()->SetColor( Red,Green,Blue );
+
+    randerbegan(actor);
+}
+
+void MainWindow::on_cone_triggered() {
+
+    shape = 3;
+
+    vtkSmartPointer<vtkConeSource> cubeSource = vtkSmartPointer<vtkConeSource>::New();
+
+    // Create a mapper that will hold the cube's geometry in a format suitable for rendering
+    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
+    mapper->SetInputConnection( cubeSource->GetOutputPort() );
+
+    actor->SetMapper(mapper);
+    actor->GetProperty()->EdgeVisibilityOn();
+
+    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
+    actor->GetProperty()->SetColor( Red,Green,Blue );
+    randerbegan(actor);
+}
+
+
+void MainWindow::on_ColorChoose_triggered() {
+    ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );			// ###### ask the QtVTKOpenGLWidget for its renderWindow ######
 
     // Add the actor to the scene
     renderer->AddActor(actor);
-    renderer->SetBackground( colors->GetColor3d("Black").GetData() );
+    QColor ColourDialog = QColorDialog::getColor();
 
-    // Setup the renderers's camera
-    renderer->ResetCamera();
-    renderer->GetActiveCamera()->Azimuth(30);
-    renderer->GetActiveCamera()->Elevation(30);
-    renderer->ResetCameraClippingRange();
+    Red_B=ColourDialog.redF();
+    Green_B=ColourDialog.greenF();
+    Blue_B=ColourDialog.blueF();
+
+    renderer->SetBackground( Red_B,Green_B,Blue_B );
+
+    renderWindow->Render();
+}
+
+void MainWindow::on_Color_triggered() {
+    ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );			// ###### ask the QtVTKOpenGLWidget for its renderWindow ######
+
+    // Add the actor to the scene
+    renderer->AddActor(actor);
+    QColor ColourDialog = QColorDialog::getColor();
+
+    Red=ColourDialog.redF();
+    Green=ColourDialog.greenF();
+    Blue=ColourDialog.blueF();
+
+    actor->GetProperty()->SetColor( Red,Green,Blue );
+
+    renderWindow->Render();
 }
 
 
 void MainWindow::on_openButton_triggered()
 {
+    shape = 0;
+
     QString fileName = QFileDialog::getOpenFileName(this, tr("Open STL File"), "./", tr("STL Files(*.stl)"));
 
-    vtkNew<vtkSTLReader> reader;
     vtkNew<vtkPolyDataMapper> mapper;
     mapper->SetInputConnection(reader->GetOutputPort());
 
+    QByteArray ba = fileName.toLocal8Bit();
 
-      QByteArray ba = fileName.toLocal8Bit();
+    const char *c_str2 = ba.data();
+    reader->SetFileName(c_str2);
+    reader->Update();
 
-      const char *c_str2 = ba.data();
-      reader->SetFileName(c_str2);
-      reader->Update();
+    actor->SetMapper(mapper);
+    actor->GetProperty()->SetColor( Red,Green,Blue );
 
-      // Visualize
-
-      vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
-
-      vtkNew<vtkActor> actor;
-
-      actor->SetMapper(mapper);
-      randerbegan(actor,colors);
+    randerbegan(actor);
 }
 
 void MainWindow::on_saveButton_triggered()
@@ -115,65 +455,29 @@ void MainWindow::on_saveButton_triggered()
     file.close();
 }
 
-void MainWindow::on_disk_triggered() {
-    //--------------------------------------------- Code From Example 1 --------------------------------------------------------------------------
-    // Create a cube using a vtkCubeSource
-    vtkSmartPointer<vtkDiskSource> cubeSource = vtkSmartPointer<vtkDiskSource>::New();
-
-
-    // Create a mapper that will hold the cube's geometry in a format suitable for rendering
-    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
-    mapper->SetInputConnection( cubeSource->GetOutputPort() );
-
-    // Create an actor that is used to set the cube's properties for rendering and place it in the window
-    vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
-    actor->GetProperty()->EdgeVisibilityOn();
-
-    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
-
-    randerbegan(actor,colors);
+void MainWindow::handlFilter() {
+    renderer->ResetCamera();
+    renderer->GetActiveCamera()->Azimuth(30);
+    renderer->GetActiveCamera()->Elevation(30);
+    renderer->ResetCameraClippingRange();
+    renderWindow->Render();
 }
 
-void MainWindow::on_arrow_triggered() {
-    //--------------------------------------------- Code From Example 1 --------------------------------------------------------------------------
-    // Create a cube using a vtkCubeSource
-    vtkSmartPointer<vtkArrowSource> cubeSource = vtkSmartPointer<vtkArrowSource>::New();
+void MainWindow::randerbegan(vtkSmartPointer<vtkActor> actor){
+    ui->qvtkWidget->GetRenderWindow()->AddRenderer( renderer );
+    renderer->AddActor(actor);
+    renderer->SetBackground( Red_B,Green_B,Blue_B );
 
-    // Create a mapper that will hold the cube's geometry in a format suitable for rendering
-    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
-    mapper->SetInputConnection( cubeSource->GetOutputPort() );
-
-    // Create an actor that is used to set the cube's properties for rendering and place it in the window
-    vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
-    actor->GetProperty()->EdgeVisibilityOn();
-
-    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
-
-    randerbegan(actor,colors);
-}
-
-void MainWindow::on_cone_triggered() {
-    //--------------------------------------------- Code From Example 1 --------------------------------------------------------------------------
-    // Create a cube using a vtkCubeSource
-    vtkSmartPointer<vtkConeSource> cubeSource = vtkSmartPointer<vtkConeSource>::New();
-
-    // Create a mapper that will hold the cube's geometry in a format suitable for rendering
-    vtkSmartPointer<vtkDataSetMapper> mapper = vtkSmartPointer<vtkDataSetMapper>::New();
-    mapper->SetInputConnection( cubeSource->GetOutputPort() );
-
-    // Create an actor that is used to set the cube's properties for rendering and place it in the window
-    vtkSmartPointer<vtkActor> actor = vtkSmartPointer<vtkActor>::New();
-    actor->SetMapper(mapper);
-    actor->GetProperty()->EdgeVisibilityOn();
-
-    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
-
-    randerbegan(actor,colors);
+    renderWindow->Render();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+
+
+
+
+

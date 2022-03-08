@@ -38,10 +38,14 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void randerbegan(vtkSmartPointer<vtkActor> actor,vtkSmartPointer<vtkNamedColors> colors);
+    void randerbegan(vtkSmartPointer<vtkActor> actor);
 
 private:
     Ui::MainWindow *ui;
+    vtkSmartPointer<vtkRenderer> renderer = vtkSmartPointer<vtkRenderer>::New();
+    vtkSmartPointer<vtkNamedColors> colors = vtkSmartPointer<vtkNamedColors>::New();
+    vtkNew<vtkGenericOpenGLRenderWindow> renderWindow;
+    //vtkSmartPointer<vtkPlane> planeLeft;
 
 public slots:
 
@@ -50,8 +54,12 @@ public slots:
     void on_arrow_triggered();
     void on_disk_triggered();
     void on_cone_triggered();
+    void on_ColorChoose_triggered();
+    void on_Color_triggered();
+    void on_checkBox_stateChanged();
+    void on_checkBoxclip_stateChanged();
 
-    void handlCamera();
+    void handlFilter();
 
 //signals:
     //void statusUpdateMessage( const QString & message, int timeout );
