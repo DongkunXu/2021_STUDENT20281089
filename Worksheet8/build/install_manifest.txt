@@ -1,0 +1,2 @@
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/_CPack_Packages/win64/NSIS/calc-0.1.1-win64/bin/calc.exe
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/_CPack_Packages/win64/NSIS/calc-0.1.1-win64/lib/static/maths.lib

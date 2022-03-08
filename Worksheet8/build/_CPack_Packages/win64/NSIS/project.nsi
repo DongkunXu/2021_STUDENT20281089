@@ -841,7 +841,15 @@ Section "Uninstall"
 
   ;Remove files we installed.
   ;Keep the list of directories here in sync with the File commands above.
+  Delete "$INSTDIR\bin"
+  Delete "$INSTDIR\bin\calc.exe"
+  Delete "$INSTDIR\lib"
+  Delete "$INSTDIR\lib\static"
+  Delete "$INSTDIR\lib\static\maths.lib"
 
+  RMDir "$INSTDIR\bin"
+  RMDir "$INSTDIR\lib\static"
+  RMDir "$INSTDIR\lib"
 
 
 !ifdef CPACK_NSIS_ADD_REMOVE

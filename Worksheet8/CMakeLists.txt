@@ -5,7 +5,7 @@ project( calc )
 # Add to top of file
 include(CTest)
 
-if(WIN32)
+if(WIN64)
 set(CPACK_GENERATOR "NSIS")
 else()
 set(CPACK_GENERATOR "ZIP")
@@ -30,6 +30,11 @@ add_executable( calc calc.cpp )
 # The executable uses the library
 target_link_libraries( calc maths )
 # /calc_cmake/CMakeLists.txt
+
+install(TARGETS calc maths
+RUNTIME DESTINATION bin
+LIBRARY DESTINATION lib
+ARCHIVE DESTINATION lib/static)
 
 # Add to end of file
 add_executable(test1 test1.cpp)

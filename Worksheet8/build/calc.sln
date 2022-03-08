@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
+# Visual Studio Version 17
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ALL_BUILD", "ALL_BUILD.vcxproj", "{3E119C54-50ED-38A8-9761-60BAC06EF43C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{74D3F640-9856-3D27-85BE-498CDAC61B37} = {74D3F640-9856-3D27-85BE-498CDAC61B37}
@@ -16,6 +16,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Continuous", "Continuous.vc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Experimental", "Experimental.vcxproj", "{48CC809D-0376-3317-A361-0CFC3304FF2D}"
 	ProjectSection(ProjectDependencies) = postProject
+		{74D3F640-9856-3D27-85BE-498CDAC61B37} = {74D3F640-9856-3D27-85BE-498CDAC61B37}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "INSTALL", "INSTALL.vcxproj", "{677B3390-F96A-30A8-ACA4-C6D340DF9DC1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E119C54-50ED-38A8-9761-60BAC06EF43C} = {3E119C54-50ED-38A8-9761-60BAC06EF43C}
 		{74D3F640-9856-3D27-85BE-498CDAC61B37} = {74D3F640-9856-3D27-85BE-498CDAC61B37}
 	EndProjectSection
 EndProject
@@ -85,6 +91,10 @@ Global
 		{48CC809D-0376-3317-A361-0CFC3304FF2D}.Release|x64.ActiveCfg = Release|x64
 		{48CC809D-0376-3317-A361-0CFC3304FF2D}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
 		{48CC809D-0376-3317-A361-0CFC3304FF2D}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
+		{677B3390-F96A-30A8-ACA4-C6D340DF9DC1}.Debug|x64.ActiveCfg = Debug|x64
+		{677B3390-F96A-30A8-ACA4-C6D340DF9DC1}.Release|x64.ActiveCfg = Release|x64
+		{677B3390-F96A-30A8-ACA4-C6D340DF9DC1}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
+		{677B3390-F96A-30A8-ACA4-C6D340DF9DC1}.RelWithDebInfo|x64.ActiveCfg = RelWithDebInfo|x64
 		{F7E53B18-E0B1-3D1C-8861-13C2D7383BAD}.Debug|x64.ActiveCfg = Debug|x64
 		{F7E53B18-E0B1-3D1C-8861-13C2D7383BAD}.Release|x64.ActiveCfg = Release|x64
 		{F7E53B18-E0B1-3D1C-8861-13C2D7383BAD}.MinSizeRel|x64.ActiveCfg = MinSizeRel|x64
