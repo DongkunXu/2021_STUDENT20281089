@@ -1,4 +1,0 @@
-A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/hello_qt.dir
-A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/edit_cache.dir
-A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/rebuild_cache.dir
-A:/A_EEEE2046/Worksheet5/exercise 2/NeXT_build_3/CMakeFiles/hello_qt_autogen.dir
