@@ -1,0 +1,10 @@
+^D:\GITHUB\2021_STUDENT20281089\WORKSHEET8\BUILD\CMAKEFILES\A4D424F9AA609EEA80460A31AAF6AC67\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/GitHub/2021_STUDENT20281089/Worksheet8 -BD:/GitHub/2021_STUDENT20281089/Worksheet8/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/GitHub/2021_STUDENT20281089/Worksheet8/build/calc.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

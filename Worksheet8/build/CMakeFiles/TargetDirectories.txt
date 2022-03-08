@@ -1,0 +1,11 @@
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/Experimental.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/Nightly.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/Continuous.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/NightlyMemoryCheck.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/maths.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/calc.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/test1.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/PACKAGE.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/RUN_TESTS.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/ALL_BUILD.dir
+D:/GitHub/2021_STUDENT20281089/Worksheet8/build/CMakeFiles/ZERO_CHECK.dir
