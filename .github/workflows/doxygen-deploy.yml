@@ -3,7 +3,7 @@ name: doxygen-deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   # The job that will build worksheet 7

@@ -3,7 +3,7 @@ name: cmake-test
 # Act when main branch is pushed
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 # List of jobs to do
 jobs:
   # The job that will build worksheet 7
